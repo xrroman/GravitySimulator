@@ -39,7 +39,7 @@ cmake --build build
 ./build/GravitySimulator
 ```
 
-> GLFW and GLM are fetched automatically by CMake FetchContent — no manual installation needed.
+> GLFW and GLM are fetched automatically by CMake FetchContent (no manual installation needed).
 
 ## Architecture
 
