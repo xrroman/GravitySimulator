@@ -32,8 +32,8 @@ Real-time N-Body gravitational simulation of the Solar System built from scratch
 **Requirements:** CMake 3.16+, Git, C++20 compiler (GCC 10+, Clang 12+, MSVC 2019+)
 
 ```bash
-git clone https://github.com/xrroman/gravity-simulator.git
-cd gravity-simulator
+git clone https://github.com/xrroman/GravitySimulator.git
+cd GravitySimulator
 cmake -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build
 ./build/GravitySimulator
