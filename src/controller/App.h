@@ -65,7 +65,7 @@ private:
     void update(float deltaTime);
     void render();
 
-    // GLFW callbacks — retrieve App* via glfwGetWindowUserPointer
+    // GLFW callbacks retrieve App* via glfwGetWindowUserPointer
     static void onFramebufferResize(GLFWwindow* window, int width, int height);
     static void onMouseMove(GLFWwindow* window, double x, double y);
     static void onMouseScroll(GLFWwindow* window, double dx, double dy);

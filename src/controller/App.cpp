@@ -14,9 +14,7 @@ App::App(unsigned int width, unsigned int height, const char* title)
     : m_screenWidth(width)
     , m_screenHeight(height)
     , m_window(static_cast<int>(width), static_cast<int>(height), title)
-    , m_camera(glm::vec3(47.0f, 150.0f, 0.0f),
-               glm::vec3(0.0f, 1.0f, 0.0f),
-               0.0f, -80.0f)
+    , m_camera(glm::vec3(47.0f, 150.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), 0.0f, -80.0f)
     , m_lastMouseX(static_cast<float>(width) * 0.5f)
     , m_lastMouseY(static_cast<float>(height) * 0.5f)
 {
@@ -64,13 +62,13 @@ void App::buildSolarSystem()
 
     static const BodyDef kBodies[] =
     {
-        { "Sun",     kMSun,             1.50f, {0.0f, 0.0f, 0.0f},         {0.0f, 0.0f, 0.0000f}, {1.0f, 0.9f, 0.2f}, true,  "assets/textures/sun.jpg"     },
+        { "Sun", kMSun, 1.50f, {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0000f}, {1.0f, 0.9f, 0.2f}, true, "assets/textures/sun.jpg" },
         { "Mercury", kMSun * 1.652e-7f, 0.30f, {kAU * 0.39f, 0.0f, 0.0f}, {0.0f, 0.0f, 3.1839f}, {0.6f, 0.6f, 0.6f}, false, "assets/textures/mercury.jpg" },
-        { "Venus",   kMSun * 2.448e-6f, 0.50f, {kAU * 0.72f, 0.0f, 0.0f}, {0.0f, 0.0f, 2.3433f}, {0.9f, 0.7f, 0.3f}, false, "assets/textures/venus.jpg"   },
-        { "Earth",   kMEarth,           0.55f, {kAU * 1.00f, 0.0f, 0.0f}, {0.0f, 0.0f, 1.9883f}, {0.2f, 0.5f, 1.0f}, false, "assets/textures/earth.jpg"   },
-        { "Mars",    kMSun * 3.213e-7f, 0.40f, {kAU * 1.52f, 0.0f, 0.0f}, {0.0f, 0.0f, 1.6128f}, {0.8f, 0.3f, 0.2f}, false, "assets/textures/mars.jpg"    },
+        { "Venus", kMSun * 2.448e-6f, 0.50f, {kAU * 0.72f, 0.0f, 0.0f}, {0.0f, 0.0f, 2.3433f}, {0.9f, 0.7f, 0.3f}, false, "assets/textures/venus.jpg" },
+        { "Earth", kMEarth, 0.55f, {kAU * 1.00f, 0.0f, 0.0f}, {0.0f, 0.0f, 1.9883f}, {0.2f, 0.5f, 1.0f}, false, "assets/textures/earth.jpg" },
+        { "Mars", kMSun * 3.213e-7f, 0.40f, {kAU * 1.52f, 0.0f, 0.0f}, {0.0f, 0.0f, 1.6128f}, {0.8f, 0.3f, 0.2f}, false, "assets/textures/mars.jpg" },
         { "Jupiter", kMSun * 9.545e-4f, 1.10f, {kAU * 5.20f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.8719f}, {0.8f, 0.6f, 0.4f}, false, "assets/textures/jupiter.jpg" },
-        { "Saturn",  kMSun * 2.858e-4f, 0.95f, {kAU * 9.50f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.6451f}, {0.9f, 0.8f, 0.5f}, false, "assets/textures/saturn.jpg"  },
+        { "Saturn", kMSun * 2.858e-4f, 0.95f, {kAU * 9.50f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.6451f}, {0.9f, 0.8f, 0.5f}, false, "assets/textures/saturn.jpg" },
     };
 
     const auto sphereVerts = SphereGeometry::getVertices();
@@ -208,8 +206,7 @@ void App::onMouseMove(GLFWwindow* window, double x, double y)
         app->m_firstMouse = false;
     }
 
-    app->m_camera.processMouseMovement(xf - app->m_lastMouseX,
-                                       app->m_lastMouseY - yf);
+    app->m_camera.processMouseMovement(xf - app->m_lastMouseX,app->m_lastMouseY - yf);
     app->m_lastMouseX = xf;
     app->m_lastMouseY = yf;
 }
@@ -227,13 +224,15 @@ void App::onKey(GLFWwindow* window, int key, int /*scancode*/, int action, int /
 
     switch (key)
     {
-        case GLFW_KEY_T:    app->m_showTrails = !app->m_showTrails;              break;
-        case GLFW_KEY_P:    app->m_simulation.paused = !app->m_simulation.paused; break;
-        case GLFW_KEY_R:    app->m_simulation.reset();
-                            app->m_renderers.clear();
-                            app->buildSolarSystem();                              break;
-        case GLFW_KEY_UP:   app->m_simulation.timeScale *= 2.0f;                 break;
-        case GLFW_KEY_DOWN: app->m_simulation.timeScale /= 2.0f;                 break;
+        case GLFW_KEY_T: app->m_showTrails = !app->m_showTrails; break;
+        case GLFW_KEY_P: app->m_simulation.paused = !app->m_simulation.paused; break;
+        case GLFW_KEY_R: app->m_simulation.reset();
+                         app->m_simulation.timeScale = 1.0f;
+                         app->m_renderers.clear();
+                         app->buildSolarSystem();
+                         break;
+        case GLFW_KEY_UP: app->m_simulation.timeScale *= 2.0f; break;
+        case GLFW_KEY_DOWN: app->m_simulation.timeScale /= 2.0f; break;
         default: break;
     }
 }

@@ -7,13 +7,13 @@
 struct Body
 {
     std::string name;
-    float mass;      ///< Scaled mass (G = 1 unit system)
-    float radius;    ///< Visual radius in world units
+    float mass; ///< Scaled mass (G = 1 unit system)
+    float radius; ///< Visual radius in world units
     glm::vec3 position;
     glm::vec3 velocity;
     glm::vec3 acceleration;
     glm::vec3 color;
-    bool isStatic;   ///< If true, acts as an immovable anchor (e.g. Sun)
+    bool isStatic; ///< If true, acts as an immovable anchor (e.g. Sun)
 
     Body(std::string name,
          float mass,

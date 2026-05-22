@@ -5,8 +5,8 @@
 
 /// N-Body gravitational simulation (G = 1 unit system).
 /// distances: visual AU (1 AU = 10 world units)
-/// time:      real seconds (~31.6 s = 1 simulated Earth year)
-/// mass:      scaled so G * M_sun = 39.535
+/// time: real seconds (~31.6 s = 1 simulated Earth year)
+/// mass: scaled so G * M_sun = 39.535
 class Simulation
 {
 public:
