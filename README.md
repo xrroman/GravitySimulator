@@ -4,6 +4,9 @@ A real-time N-Body gravitational simulation of the Solar System built from scrat
 
 ![Gravity Simulator](assets/screenshot.png)
 
+![Gravity Simulator](assets/demo.gif)
+
+
 ## Features
 
 - Real-time N-Body gravitational simulation of the Solar System
