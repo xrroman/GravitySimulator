@@ -6,6 +6,8 @@ Real-time N-Body gravitational simulation of the Solar System built from scratch
 
 ## Features
 
+![Gravity Simulator](assets/demo.gif)
+
 - N-Body physics using Newton's Law of Universal Gravitation
 - Symplectic (semi-implicit) Euler integration for long-term orbital stability
 - Per-body orbital trail rendering with a GPU ring buffer
