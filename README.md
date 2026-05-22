@@ -1,6 +1,7 @@
 # Gravity Simulator
 
 Real-time N-Body gravitational simulation of the Solar System built from scratch with OpenGL 3.3, C++20, GLFW and GLM. No game engine used, featuring a custom physics integrator and a hand-rolled renderer.
+
 ![Gravity Simulator](assets/screenshot.png)
 
 ## Features
